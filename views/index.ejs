@@ -2,19 +2,106 @@
 <html>
   <head>
     <title><%= title %></title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <a href="/new">New Message</a>
-    <ul>
+    <nav class="navbar navbar-light bg-info justify-content-center">
+      <span class="navbar-brand mb-0 h1"><%= title %></span>
+    </nav>
+    <div class="container d-flex align-items-center flex-column p-4">
+      <button
+        type="button"
+        class="btn btn-outline-warning mb-4 w-25"
+        data-toggle="modal"
+        data-target="#staticBackdrop"
+      >
+        New Message
+      </button>
+
+      <div
+        class="modal fade"
+        id="staticBackdrop"
+        data-backdrop="static"
+        data-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">New Message</h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form action="/new" method="post">
+                <div class="form-group">
+                  <label for="user">Your Name : </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="user"
+                    name="messageUser"
+                    placeholder="Enter your name"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="text">Your Message : </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="text"
+                    name="messageText"
+                    placeholder="Enter your message"
+                  />
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button type="submit" class="btn btn-primary">Send</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
       <% messages.forEach((item) => { %>
-      <li>
-        <p>User: <%= item.user %></p>
-        <p>Message: <%= item.text %></p>
-        <p>Added: <%= item.added %></p>
-      </li>
+      <div class="card shadow rounded mb-3 w-50">
+        <div class="card-body">
+          <p class="h3 font-weight-normal"><%= item.text %></p>
+          <p class="font-weight-bold">From: <%= item.user %></p>
+          <!-- <p>Added: <%= item.added %></p> -->
+        </div>
+      </div>
       <% }) %>
-    </ul>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
