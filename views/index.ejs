@@ -83,12 +83,16 @@
           </div>
         </div>
       </div>
-      <% messages.forEach((item) => { %>
+      <% messages.forEach((item) => { %> <% const day = item.added.getDay();
+      const month = item.added.getMonth(); const year = item.added.getFullYear()
+      %>
       <div class="card shadow rounded mb-3 w-50">
         <div class="card-body">
           <p class="h3 font-weight-normal"><%= item.text %></p>
-          <p class="font-weight-bold">From: <%= item.user %></p>
-          <!-- <p>Added: <%= item.added %></p> -->
+          <div class="d-flex justify-content-between">
+            <p class="font-weight-bold">From: <%= item.user %></p>
+            <p>Added: <%= `${day} - ${month} - ${year}` %></p>
+          </div>
         </div>
       </div>
       <% }) %>
